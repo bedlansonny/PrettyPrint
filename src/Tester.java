@@ -17,7 +17,7 @@ public class Tester
             for(double num : nums)
                 bst.insertValue(num);
 
-            
+
         }
     }
 }

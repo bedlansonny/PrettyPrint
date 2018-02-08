@@ -5,6 +5,7 @@ public class BST
 {
     Node root;
     int size;
+    String inorder;
 
     public void insertValue(double k)
     {
@@ -39,15 +40,17 @@ public class BST
     }
 
 
-    public void printInorder()
+    public String toStringInorder()
     {
         visit(root);
+        inorder = inorder.substring(0, inorder.length()-2);
+        return inorder;
     }
 
     public void visit(Node parent)
     {
         leftNode(parent);
-        System.out.print(parent.value + " ");
+        inorder += parent.value + ", ";
         rightNode(parent);
     }
 
