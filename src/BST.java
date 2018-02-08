@@ -4,24 +4,28 @@
 public class BST
 {
     Node root;
-    int size;
-    String inorder;
+    String inorderStr;
+    String prettyStr;
+
+    public BST()
+    {
+        inorderStr = "";
+        prettyStr = "";
+    }
 
     public void insertValue(double k)
     {
-        size++;
-
         if(root == null)
         {
-            root = new Node(k);
+            root = new Node(k, 0);
             return;
         }
 
         Node parent = findParent(k, root);
         if(k <= parent.value)
-            parent.left = new Node(k);
+            parent.left = new Node(k, parent.depth+1);
         else
-            parent.right = new Node(k);
+            parent.right = new Node(k, parent.depth+1);
     }
 
     public Node findParent(double k, Node v)
@@ -39,49 +43,42 @@ public class BST
         }
     }
 
-
-    public String toStringInorder()
+    public void traverse()
     {
         visit(root);
-        inorder = inorder.substring(0, inorder.length()-2);
-        return inorder;
+        inorderStr = inorderStr.substring(0, inorderStr.length()-2);
     }
 
     public void visit(Node parent)
     {
-        leftNode(parent);
-        inorder += parent.value + ", ";
-        rightNode(parent);
-    }
-
-    public void leftNode(Node parent)
-    {
-        if(parent.left == null)
+        if(parent == null)
             return;
+
         visit(parent.left);
-    }
 
-    public void rightNode(Node parent)
-    {
-        if(parent.right == null)
-            return;
+        inorderStr += parent.value + ", ";
+
+        String nextLayer = "";
+        for (int i = 0; i < parent.depth*2; i++)
+        {
+            nextLayer += " ";
+        }
+        nextLayer += parent.value + "\n";
+        prettyStr = nextLayer + prettyStr;
+
         visit(parent.right);
-    }
-
-
-    public String toStringPretty()
-    {
-        return "urmom";
     }
 
     class Node
     {
         double value;
+        int depth;
         Node left, right;
 
-        public Node(double value)
+        public Node(double value, int depth)
         {
             this.value = value;
+            this.depth = depth;
         }
     }
 }

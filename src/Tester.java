@@ -17,7 +17,9 @@ public class Tester
             for(double num : nums)
                 bst.insertValue(num);
 
+            bst.traverse();
 
+            System.out.printf("%s%nIn order: %s%n", bst.prettyStr, bst.inorderStr);
         }
     }
 }
