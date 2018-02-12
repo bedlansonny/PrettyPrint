@@ -59,7 +59,7 @@ public class BST
         inorderStr += parent.value + ", ";
 
         String nextLayer = "";
-        for (int i = 0; i < parent.depth*2; i++)
+        for (int i = 0; i < parent.depth*4; i++)
         {
             nextLayer += " ";
         }
