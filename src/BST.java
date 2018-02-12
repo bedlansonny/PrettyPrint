@@ -43,7 +43,7 @@ public class BST
         }
     }
 
-    public void traverse()
+    public void traverse() //inorder
     {
         visit(root);
         inorderStr = inorderStr.substring(0, inorderStr.length()-2);
